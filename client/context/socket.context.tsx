@@ -1,1 +1,13 @@
-import {io}  from "socket.io-client";
+import { createContext, useContext } from "react";
+import { io } from "socket.io-client";
+import { SOCKET_URL } from "../config/defaul"
+
+const socket = io(SOCKET_URL)
+
+const SocketContext = createContext({socket})
+
+function SocketsProvider(props: any) {
+  return <SocketContext.Provider value={{ socket }} {...props} />;
+}
+export const useSockets = () => useContext(SocketContext)
+export default SocketsProvider
