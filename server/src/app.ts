@@ -13,7 +13,9 @@ const host = config.get<string>("host")
 const corsOrigin = config.get<string>("corsOrigin")
 
 const app = express()
-
+app.use(cors({
+  origin:corsOrigin
+}))
 const httpServer = createServer(app)
 
 const io = new Server(httpServer, {
